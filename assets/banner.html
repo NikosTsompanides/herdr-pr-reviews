@@ -1,0 +1,110 @@
+<!doctype html>
+<!-- Social/LinkedIn banner, 1280x640 rendered at 2x (2560x1280). Re-render from the repo root:
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars \
+    --window-size=1280,640 --force-device-scale-factor=2 --virtual-time-budget=4000 \
+    --screenshot="$PWD/assets/banner.png" "file://$PWD/assets/banner.html" -->
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=block" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f1ea; --ink: #1d1b18; --muted: #6b665d; --dim: #9a948a; --line: #e2ddd2;
+    --card: #fbfaf6; --chip: #ebe6dc; --teal: #0f766e; --amber: #c2410c; --green: #15803d; --red: #b91c1c;
+    --term: #1b1d1f; --term-ink: #e7e5e0; --term-dim: #8b8f94;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1280px; height: 640px; overflow: hidden; }
+  body {
+    background:
+      radial-gradient(900px 500px at 92% 110%, #fde7d3 0%, transparent 60%),
+      radial-gradient(700px 420px at 105% -10%, #d6efe9 0%, transparent 60%),
+      var(--bg);
+    font-family: Geist, -apple-system, system-ui, sans-serif; color: var(--ink);
+    display: flex; padding: 60px 48px 60px 72px; gap: 36px;
+  }
+  .left { width: 560px; display: flex; flex-direction: column; justify-content: center; }
+  .tag { display: inline-flex; align-self: flex-start; gap: 8px; align-items: center; padding: 6px 12px 6px 6px;
+    border: 1px solid var(--line); border-radius: 999px; background: #fffdf8; font-size: 15px; color: var(--muted); }
+  .tag b { background: var(--teal); color: #fff; font-weight: 600; padding: 3px 10px; border-radius: 999px; font-size: 13px; }
+  .brand { display: flex; align-items: center; gap: 14px; margin-top: 28px; }
+  .logo { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center;
+    background: linear-gradient(135deg, #14b8a6, #0f766e); box-shadow: 0 6px 18px #0f766e40; }
+  .brand span { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+  h1 { margin-top: 24px; font-size: 58px; line-height: 1.02; letter-spacing: -0.045em; font-weight: 800; }
+  h1 em { font-style: normal; color: var(--teal); }
+  .sub { margin-top: 22px; font-size: 21px; line-height: 1.45; color: var(--muted); max-width: 480px; }
+  .feats { margin-top: 30px; display: grid; gap: 12px; }
+  .feat { display: flex; align-items: center; gap: 12px; font-size: 18px; }
+  .feat i { width: 26px; height: 26px; border-radius: 8px; background: var(--chip); display: grid; place-items: center; font-style: normal; font-size: 14px; color: var(--teal); }
+  .feat small { color: var(--dim); font-size: 16px; }
+
+  .right { position: relative; flex: 1; }
+  .panel { position: absolute; left: 0; top: 0; width: 410px; background: var(--card); border: 1px solid var(--line);
+    border-radius: 16px; box-shadow: 0 20px 50px #2a201214, 0 2px 6px #2a20120d; padding: 10px 8px 12px; }
+  .ph { display: flex; align-items: center; gap: 10px; padding: 8px 12px 10px; font-weight: 600; font-size: 16px; }
+  .ph .sp { flex: 1; }
+  .ph .pill { font-weight: 500; font-size: 12px; color: var(--muted); background: var(--chip); padding: 4px 10px; border-radius: 6px; }
+  .pr { padding: 11px 12px; border-radius: 10px; }
+  .pr.hot { background: #eef7f5; outline: 1.5px solid #9fd6cd; }
+  .l1 { display: flex; gap: 8px; font-size: 15px; white-space: nowrap; overflow: hidden; }
+  .l1 .n { color: var(--dim); }
+  .l1 .t { overflow: hidden; text-overflow: ellipsis; }
+  .l2 { display: flex; gap: 8px; align-items: center; font-size: 13px; margin-top: 6px; color: var(--muted); }
+  .l2 .a { color: var(--dim); } .g { color: var(--green); } .r { color: var(--red); }
+  .l2 .sp { flex: 1; }
+  .btn { font-size: 12.5px; padding: 4px 11px; border-radius: 6px; background: var(--chip); color: var(--muted); }
+  .btn.go { background: var(--teal); color: #fff; font-weight: 600; box-shadow: 0 4px 12px #0f766e55; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: #d97706; display: inline-block; margin-right: 5px; }
+
+  .term { position: absolute; left: 160px; top: 290px; width: 416px; background: var(--term); border-radius: 14px;
+    box-shadow: 0 24px 60px #1b1d1f45; color: var(--term-ink); font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 13.5px; overflow: hidden; }
+  .tb { display: flex; align-items: center; gap: 7px; padding: 11px 14px; background: #232628; font-family: Geist, sans-serif; font-size: 13px; color: var(--term-dim); }
+  .tb s { width: 11px; height: 11px; border-radius: 50%; display: inline-block; text-decoration: none; }
+  .tb .tab { margin-left: 10px; color: var(--term-ink); background: #2f3336; padding: 3px 10px; border-radius: 6px; }
+  .tbody { padding: 14px 16px 16px; line-height: 1.75; }
+  .p { color: #5eead4; } .d { color: var(--term-dim); } .o { color: #fdba74; }
+  .box { margin: 8px 0; border: 1px solid #3a3f43; border-radius: 8px; padding: 8px 12px; }
+  .cur { display: inline-block; width: 8px; height: 15px; background: #e7e5e0; vertical-align: -2px; }
+  .arrow { position: absolute; left: 196px; top: 128px; }
+</style>
+</head>
+<body>
+  <div class="left">
+    <div class="tag"><b>Herdr mod</b> Free and open source</div>
+    <div class="brand">
+      <div class="logo"><svg width="28" height="28" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 8s2.4-4.5 6.5-4.5S14.5 8 14.5 8 12.1 12.5 8 12.5 1.5 8 1.5 8Z"/><circle cx="8" cy="8" r="2"/></svg></div>
+      <span>PR Reviews</span>
+    </div>
+    <h1>Review pull requests<br><em>in one click.</em></h1>
+    <p class="sub">Every pull request waiting on you, in one list. One click gets the code ready and hands it to your AI assistant.</p>
+    <div class="feats">
+      <div class="feat"><i>1</i>One click to start <small>no branch switching</small></div>
+      <div class="feat"><i>✎</i>Your own instructions <small>written once</small></div>
+      <div class="feat"><i>⇄</i>Any assistant <small>Claude, Codex, …</small></div>
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="panel">
+      <div class="ph"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#6b665d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 8s2.4-4.5 6.5-4.5S14.5 8 14.5 8 12.1 12.5 8 12.5 1.5 8 1.5 8Z"/><circle cx="8" cy="8" r="2"/></svg>PR Reviews<span class="sp"></span><span class="pill">3 waiting</span></div>
+      <div class="pr hot"><div class="l1"><span class="n">api #412</span><span class="t">Add rate limiting to the public API</span></div>
+        <div class="l2">maria-dev <span class="a">24m</span> <span class="g">+214</span> <span class="r">−38</span><span class="sp"></span><span class="btn go">Review</span></div></div>
+      <div class="pr"><div class="l1"><span class="n">web #88</span><span class="t">Fix flaky checkout test on CI</span></div>
+        <div class="l2">sam-k <span class="a">3h</span> <span class="g">+12</span> <span class="r">−9</span><span class="sp"></span><span><span class="dot"></span>working</span><span class="btn">Open</span></div></div>
+      <div class="pr"><div class="l1"><span class="n">web #1203</span><span class="t">Migrate settings page to the new design</span></div>
+        <div class="l2">lee <span class="a">1d</span> <span class="g">+876</span> <span class="r">−640</span><span class="sp"></span><span class="btn">Review</span></div></div>
+    </div>
+
+    <div class="term">
+      <div class="tb"><s style="background:#ff5f57"></s><s style="background:#febc2e"></s><s style="background:#28c840"></s><span class="tab">review #412</span></div>
+      <div class="tbody">
+        <div><span class="p">~/.herdr/worktrees/acme--api/pr-412</span></div>
+        <div class="box"><span class="o">✻</span> Claude Code<br><span class="d">› /code-review</span><br><span class="d">&nbsp;&nbsp;github.com/acme/api/pull/412</span></div>
+        <div class="d">Reading the diff · 6 files changed</div>
+        <div>Found 2 issues, ranked by severity <span class="cur"></span></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
