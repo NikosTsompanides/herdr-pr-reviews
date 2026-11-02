@@ -1,10 +1,12 @@
 # PR Reviews for Herdr
 
+![PR Reviews: review pull requests in one click](assets/banner.png)
+
 A [Herdr](https://herdr.dev) panel that lists the GitHub pull requests waiting on your review. One click checks the PR out in its own worktree, opens a Herdr space there and starts your coding agent with your review prompt.
 
-![PR Reviews: the list of PRs waiting on your review](preview.png)
-
 ## What it does
+
+<img src="preview.png" alt="PR Reviews: the list of PRs waiting on your review" width="400">
 
 - **Lists the PRs that request your review** (yours or your team's), newest first. Each card shows the repo, number, title, author, age, `+/−` lines and draft state. Clicking a card opens the PR on GitHub. Bot PRs (dependabot, renovate, `[bot]`) go into a folded **BOTS** section.
 - **Review** fetches `pull/<n>/head`, which also works for forks, onto a local branch `review/pr-<n>`. It checks that branch out in `~/.herdr/worktrees/<owner>--<repo>/pr-<n>`. Every PR gets its own folder and branch, so a fork PR whose branch is called `main` never touches your `main`. It then opens a space with a `review #<n>` tab running your agent. If none of your clones has a remote pointing at the repo, it clones the repo into `~/.herdr/repos/<owner>--<repo>` first, and reuses that clone next time.
